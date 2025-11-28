@@ -512,4 +512,37 @@
             transform: none;
         }
     }
+
+    /* Hide scrollbar for testimonial carousel */
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Mobile hero optimizations */
+    @media (max-width: 640px) {
+        #hero {
+            min-height: 100svh;
+            padding-top: 0;
+        }
+
+        #hero .hero-slide .grid {
+            transform: scale(1.2);
+        }
+
+        /* Tighter vertical spacing on mobile hero */
+        #hero .poa-container-wide {
+            padding-top: 0;
+            margin-top: -2rem;
+        }
+
+        /* Reduce label margin on mobile */
+        #hero .poa-container-wide > div:first-child {
+            margin-bottom: 0.75rem;
+        }
+    }
 }

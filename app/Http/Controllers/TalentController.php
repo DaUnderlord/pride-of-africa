@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\View\View;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class TalentController extends Controller
 {
@@ -141,29 +142,15 @@ class TalentController extends Controller
     public function qrCode(Talent $talent): Response
     {
         $profileUrl = route('talent.show', $talent);
-        
-        // Use Google Charts API for QR code generation (free, no package needed)
-        $qrApiUrl = 'https://chart.googleapis.com/chart?' . http_build_query([
-            'cht' => 'qr',
-            'chs' => '300x300',
-            'chl' => $profileUrl,
-            'choe' => 'UTF-8',
-            'chld' => 'H|2', // High error correction, 2px margin
-        ]);
 
-        try {
-            $response = Http::timeout(10)->get($qrApiUrl);
-            
-            if ($response->successful()) {
-                return response($response->body(), 200)
-                    ->header('Content-Type', 'image/png')
-                    ->header('Cache-Control', 'public, max-age=86400');
-            }
-        } catch (\Exception $e) {
-            \Log::error('QR code generation failed: ' . $e->getMessage());
-        }
+        $png = QrCode::format('png')
+            ->size(300)
+            ->margin(2)
+            ->errorCorrection('H')
+            ->generate($profileUrl);
 
-        // Fallback: return a placeholder or redirect
-        abort(503, 'QR code generation temporarily unavailable');
+        return response($png, 200)
+            ->header('Content-Type', 'image/png')
+            ->header('Cache-Control', 'public, max-age=86400');
     }
 }

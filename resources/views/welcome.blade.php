@@ -149,14 +149,14 @@
                 <!-- ============================================
                      HERO SECTION - Editorial Magazine Style
                      ============================================ -->
-                <section class="relative min-h-screen flex items-center justify-center overflow-hidden" id="hero">
+                <section class="relative min-h-[100svh] flex items-center justify-center overflow-hidden pt-0" id="hero">
                     <!-- Hero Background Image Carousel -->
                     <div class="absolute inset-0" id="heroCarousel">
                         <!-- Slide 1 -->
                         <div class="hero-slide absolute inset-0 opacity-100 transition-opacity duration-1000">
                             <div class="absolute inset-0 flex items-center justify-center" data-parallax="0.1">
                                 <div class="relative w-full max-w-5xl px-8 md:px-4">
-                                    <div class="grid grid-cols-3 gap-4 md:gap-6 opacity-45 md:opacity-60">
+                                    <div class="grid grid-cols-3 gap-2 md:gap-6 opacity-55 md:opacity-60 scale-110 md:scale-100">
                                         <div class="aspect-[3/4] rounded-2xl overflow-hidden transform -translate-y-8">
                                             <img src="https://images.pexels.com/photos/2220316/pexels-photo-2220316.jpeg?auto=compress&cs=tinysrgb&w=800" alt="" class="h-full w-full object-cover" loading="eager" />
                                         </div>
@@ -174,7 +174,7 @@
                         <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
                             <div class="absolute inset-0 flex items-center justify-center">
                                 <div class="relative w-full max-w-5xl px-8 md:px-4">
-                                    <div class="grid grid-cols-3 gap-4 md:gap-6 opacity-45 md:opacity-60">
+                                    <div class="grid grid-cols-3 gap-2 md:gap-6 opacity-55 md:opacity-60 scale-110 md:scale-100">
                                         <div class="aspect-[3/4] rounded-2xl overflow-hidden transform translate-y-4">
                                             <img src="https://images.pexels.com/photos/2681751/pexels-photo-2681751.jpeg?auto=compress&cs=tinysrgb&w=800" alt="" class="h-full w-full object-cover" loading="lazy" />
                                         </div>
@@ -192,7 +192,7 @@
                         <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
                             <div class="absolute inset-0 flex items-center justify-center">
                                 <div class="relative w-full max-w-5xl px-8 md:px-4">
-                                    <div class="grid grid-cols-3 gap-4 md:gap-6 opacity-45 md:opacity-60">
+                                    <div class="grid grid-cols-3 gap-2 md:gap-6 opacity-55 md:opacity-60 scale-110 md:scale-100">
                                         <div class="aspect-[3/4] rounded-2xl overflow-hidden transform -translate-y-6">
                                             <img src="https://images.pexels.com/photos/1689731/pexels-photo-1689731.jpeg?auto=compress&cs=tinysrgb&w=800" alt="" class="h-full w-full object-cover" loading="lazy" />
                                         </div>
@@ -227,10 +227,10 @@
                     <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black pointer-events-none"></div>
 
                     <!-- Hero Content -->
-                    <div class="relative z-10 poa-container-wide text-center px-4 pt-6 md:pt-10 pb-28 md:pb-32">
+                    <div class="relative z-10 poa-container-wide text-center px-4 pt-0 md:pt-10 pb-24 md:pb-32">
                         <!-- Top Label -->
-                        <div class="mb-8 md:mb-10">
-                            <span class="poa-id-font inline-block text-[9px] md:text-[10px] tracking-[0.5em] text-[rgba(245,230,179,0.75)] border border-[rgba(212,175,55,0.25)] px-5 py-2.5 rounded-full backdrop-blur-sm" data-scramble>
+                        <div class="mb-5 md:mb-10">
+                            <span class="poa-id-font inline-block text-[8px] md:text-[10px] tracking-[0.4em] md:tracking-[0.5em] text-[rgba(245,230,179,0.75)] border border-[rgba(212,175,55,0.25)] px-4 md:px-5 py-2 md:py-2.5 rounded-full backdrop-blur-sm" data-scramble>
                                 CURATED AFRICAN EXCELLENCE
                             </span>
                         </div>
@@ -607,11 +607,35 @@
                      TESTIMONIALS PREVIEW
                      ============================================ -->
                 <section class="poa-container pb-24 poa-reveal">
-                    <div class="text-center mb-12">
+                    <div class="text-center mb-8 md:mb-12">
                         <p class="poa-id-font text-[11px] tracking-[0.32em] text-[rgba(245,230,179,0.85)]">TESTIMONIALS</p>
-                        <h2 class="poa-hero-heading mt-3 text-3xl md:text-4xl tracking-[0.06em]">Trusted by Industry Leaders</h2>
+                        <h2 class="poa-hero-heading mt-3 text-2xl md:text-4xl tracking-[0.06em]">Trusted by Industry Leaders</h2>
                     </div>
-                    <div class="grid gap-6 md:grid-cols-3">
+                    <!-- Mobile: Horizontal Carousel -->
+                    <div class="md:hidden overflow-x-auto pb-4 -mx-4 px-4 snap-x snap-mandatory scrollbar-hide" id="testimonialCarousel">
+                        <div class="flex gap-4" style="width: max-content;">
+                            @foreach([
+                                ['name' => 'Amara Obi', 'role' => 'Creative Director', 'company' => 'Vogue Africa', 'quote' => 'The quality of talent and professionalism is unmatched. Our go-to platform for editorial casting.'],
+                                ['name' => 'Kwame Asante', 'role' => 'Producer', 'company' => 'Afrobeats Studios', 'quote' => 'Finally, a platform that understands African talent. The privacy-first approach is exactly what we needed.'],
+                                ['name' => 'Zara Mensah', 'role' => 'Brand Manager', 'company' => 'Nike Africa', 'quote' => 'Streamlined our casting process entirely. The curated roster saves us weeks of scouting.'],
+                            ] as $testimonial)
+                            <div class="poa-card p-5 space-y-3 snap-center flex-shrink-0" style="width: 280px;">
+                                <div class="flex gap-1">
+                                    @for($i = 0; $i < 5; $i++)
+                                    <svg class="w-3.5 h-3.5 text-[rgba(212,175,55,0.8)]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                    @endfor
+                                </div>
+                                <p class="text-[13px] text-neutral-300 leading-relaxed italic">"{{ $testimonial['quote'] }}"</p>
+                                <div class="pt-2 border-t border-white/5">
+                                    <div class="text-sm text-white font-medium">{{ $testimonial['name'] }}</div>
+                                    <div class="text-[10px] text-neutral-500">{{ $testimonial['role'] }}, {{ $testimonial['company'] }}</div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <!-- Desktop: Grid -->
+                    <div class="hidden md:grid gap-6 md:grid-cols-3">
                         @foreach([
                             ['name' => 'Amara Obi', 'role' => 'Creative Director', 'company' => 'Vogue Africa', 'quote' => 'The quality of talent and professionalism is unmatched. Our go-to platform for editorial casting.'],
                             ['name' => 'Kwame Asante', 'role' => 'Producer', 'company' => 'Afrobeats Studios', 'quote' => 'Finally, a platform that understands African talent. The privacy-first approach is exactly what we needed.'],
