@@ -35,4 +35,63 @@ return [
         ],
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Google reCAPTCHA
+    |--------------------------------------------------------------------------
+    */
+    'recaptcha' => [
+        'site_key' => env('RECAPTCHA_SITE_KEY'),
+        'secret' => env('RECAPTCHA_SECRET_KEY'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | WhatsApp Integration
+    |--------------------------------------------------------------------------
+    */
+    'whatsapp' => [
+        'number' => env('WHATSAPP_NUMBER', '2347084955556'),
+        'message' => env('WHATSAPP_DEFAULT_MESSAGE', 'Hello! I would like to enquire about your modelling services.'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Social Media Links
+    |--------------------------------------------------------------------------
+    */
+    'social' => [
+        'instagram' => env('SOCIAL_INSTAGRAM'),
+        'tiktok' => env('SOCIAL_TIKTOK'),
+        'twitter' => env('SOCIAL_TWITTER'),
+        'facebook' => env('SOCIAL_FACEBOOK'),
+        'youtube' => env('SOCIAL_YOUTUBE'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Tawk.to Live Chat
+    |--------------------------------------------------------------------------
+    */
+    'tawkto' => [
+        'property_id' => env('TAWKTO_PROPERTY_ID'),
+        'widget_id' => env('TAWKTO_WIDGET_ID'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Payment Gateways
+    |--------------------------------------------------------------------------
+    */
+    'paystack' => [
+        'public_key' => env('PAYSTACK_PUBLIC_KEY'),
+        'secret_key' => env('PAYSTACK_SECRET_KEY'),
+        'payment_url' => env('PAYSTACK_PAYMENT_URL', 'https://api.paystack.co'),
+    ],
+
+    'flutterwave' => [
+        'public_key' => env('FLUTTERWAVE_PUBLIC_KEY'),
+        'secret_key' => env('FLUTTERWAVE_SECRET_KEY'),
+    ],
+
 ];

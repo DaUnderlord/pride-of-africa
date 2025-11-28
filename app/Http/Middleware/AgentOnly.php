@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+class AgentOnly
+{
+    public function handle(Request $request, Closure $next): Response
+    {
+        if (! session()->has('agent_id')) {
+            return redirect()->route('agent.login.show');
+        }
+
+        return $next($request);
+    }
+}

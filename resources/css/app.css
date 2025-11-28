@@ -6,6 +6,510 @@
 @source '../**/*.js';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    /* Typography */
+    --font-heading: 'Playfair Display', ui-serif, Georgia, 'Times New Roman', Times, serif;
+    --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-id: 'Space Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+        'Courier New', monospace;
+
+    /* Brand Colors */
+    --color-poa-black: #000000;
+    --color-poa-charcoal: #0d0d0d;
+    --color-poa-gold: #d4af37;
+    --color-poa-gold-soft: #f5e6b3;
+    --color-poa-white: #ffffff;
+    --color-poa-ivory: #f7f5f0;
+    --color-poa-gold-deep: #c89d2a;
+
+    /* Utility aliases */
+    --color-bg-dark: var(--color-poa-black);
+    --color-bg-light: var(--color-poa-ivory);
+    --color-text-dark: #111111;
+    --color-text-light: #f5f5f5;
+}
+
+@layer base {
+    html {
+        font-family: var(--font-body);
+        background-color: var(--color-bg-dark);
+        color: var(--color-text-light);
+    }
+
+    body {
+        min-height: 100vh;
+        background-color: var(--color-bg-dark);
+        color: var(--color-text-light);
+    }
+
+    .theme-light {
+        background-color: var(--color-bg-light);
+        color: var(--color-text-dark);
+    }
+
+    .theme-dark {
+        background-color: var(--color-bg-dark);
+        color: var(--color-text-light);
+    }
+}
+
+@layer components {
+    .poa-container {
+        max-width: 1200px;
+        margin-inline: auto;
+        padding-inline: 1.5rem;
+    }
+
+    .poa-container-wide {
+        max-width: 1400px;
+        margin-inline: auto;
+        padding-inline: 1.5rem;
+    }
+
+    .poa-gold-line {
+        height: 1px;
+        width: 100%;
+        background: linear-gradient(90deg, transparent, var(--color-poa-gold), transparent);
+    }
+
+    .poa-card {
+        border-radius: 1.25rem;
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        background: radial-gradient(circle at top left, rgba(212, 175, 55, 0.12), transparent 55%),
+            rgba(0, 0, 0, 0.9);
+        box-shadow: 0 22px 60px rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(14px);
+    }
+
+    .poa-hero-heading {
+        font-family: var(--font-heading);
+        letter-spacing: 0.06em;
+    }
+
+    .poa-id-font {
+        font-family: var(--font-id);
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+    }
+
+    /* ========================================
+       HERO SECTION ENHANCEMENTS
+       ======================================== */
+
+    .poa-hero-title {
+        font-family: var(--font-heading);
+        font-size: clamp(2.2rem, 9vw, 6rem);
+        line-height: 0.95;
+        letter-spacing: -0.01em;
+        font-weight: 600;
+    }
+
+    .poa-hero-title-line {
+        display: block;
+        overflow: hidden;
+    }
+
+    .poa-hero-title-word {
+        display: inline-block;
+        transform: translateY(100%);
+        animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .poa-hero-title-word:nth-child(1) { animation-delay: 0.1s; }
+    .poa-hero-title-word:nth-child(2) { animation-delay: 0.2s; }
+    .poa-hero-title-word:nth-child(3) { animation-delay: 0.3s; }
+
+    /* Hero Image Stack */
+    .poa-hero-image-stack {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        perspective: 1000px;
+    }
+
+    .poa-hero-image {
+        position: relative;
+        overflow: hidden;
+        border-radius: 1rem;
+        transform-style: preserve-3d;
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .poa-hero-image::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0,0,0,0.7), transparent 50%);
+        pointer-events: none;
+    }
+
+    .poa-hero-image--center {
+        grid-column: 2;
+        z-index: 10;
+        transform: scale(1.1);
+        box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8);
+    }
+
+    .poa-hero-image--left {
+        opacity: 0.6;
+        filter: grayscale(30%);
+        transform: translateX(20%) rotateY(15deg);
+    }
+
+    .poa-hero-image--right {
+        opacity: 0.6;
+        filter: grayscale(30%);
+        transform: translateX(-20%) rotateY(-15deg);
+    }
+
+    .poa-hero-image-stack:hover .poa-hero-image--left {
+        transform: translateX(10%) rotateY(8deg);
+        opacity: 0.8;
+    }
+
+    .poa-hero-image-stack:hover .poa-hero-image--right {
+        transform: translateX(-10%) rotateY(-8deg);
+        opacity: 0.8;
+    }
+
+    /* Floating Elements */
+    .poa-float {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    .poa-float-delay-1 { animation-delay: -2s; }
+    .poa-float-delay-2 { animation-delay: -4s; }
+
+    /* Gold Particle */
+    .poa-particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: var(--color-poa-gold);
+        border-radius: 50%;
+        opacity: 0.6;
+        animation: particleFloat 8s ease-in-out infinite;
+    }
+
+    /* ========================================
+       MARQUEE
+       ======================================== */
+    .poa-marquee {
+        overflow: hidden;
+        white-space: nowrap;
+        position: relative;
+    }
+
+    .poa-marquee::before,
+    .poa-marquee::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        width: 100px;
+        height: 100%;
+        z-index: 2;
+    }
+
+    .poa-marquee::before {
+        left: 0;
+        background: linear-gradient(to right, #000, transparent);
+    }
+
+    .poa-marquee::after {
+        right: 0;
+        background: linear-gradient(to left, #000, transparent);
+    }
+
+    .poa-marquee-content {
+        display: inline-flex;
+        animation: marquee 30s linear infinite;
+    }
+
+    .poa-marquee-content span {
+        padding: 0 2rem;
+    }
+
+    /* ========================================
+       SCROLL REVEAL ANIMATIONS
+       ======================================== */
+    .poa-reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .poa-reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .poa-reveal-delay-1 { transition-delay: 0.1s; }
+    .poa-reveal-delay-2 { transition-delay: 0.2s; }
+    .poa-reveal-delay-3 { transition-delay: 0.3s; }
+    .poa-reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* Stagger children */
+    .poa-stagger > * {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .poa-stagger.is-visible > *:nth-child(1) { transition-delay: 0.05s; opacity: 1; transform: translateY(0); }
+    .poa-stagger.is-visible > *:nth-child(2) { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
+    .poa-stagger.is-visible > *:nth-child(3) { transition-delay: 0.15s; opacity: 1; transform: translateY(0); }
+    .poa-stagger.is-visible > *:nth-child(4) { transition-delay: 0.2s; opacity: 1; transform: translateY(0); }
+    .poa-stagger.is-visible > *:nth-child(5) { transition-delay: 0.25s; opacity: 1; transform: translateY(0); }
+    .poa-stagger.is-visible > *:nth-child(6) { transition-delay: 0.3s; opacity: 1; transform: translateY(0); }
+
+    /* ========================================
+       CARD TILT EFFECT
+       ======================================== */
+    .poa-tilt {
+        transform-style: preserve-3d;
+        transition: transform 0.3s ease;
+    }
+
+    .poa-tilt:hover {
+        transform: perspective(1000px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+    }
+
+    /* ========================================
+       MAGNETIC BUTTON
+       ======================================== */
+    .poa-magnetic {
+        position: relative;
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .poa-magnetic:hover {
+        transform: translate(var(--magnet-x, 0), var(--magnet-y, 0));
+    }
+
+    /* Button Shine Effect */
+    .poa-btn-shine {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .poa-btn-shine::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent
+        );
+        transition: left 0.5s ease;
+    }
+
+    .poa-btn-shine:hover::before {
+        left: 100%;
+    }
+
+    /* ========================================
+       STATS COUNTER
+       ======================================== */
+    .poa-stat-number {
+        font-family: var(--font-heading);
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 600;
+        background: linear-gradient(135deg, var(--color-poa-gold-soft), var(--color-poa-gold));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* ========================================
+       GRAIN TEXTURE OVERLAY
+       ======================================== */
+    .poa-grain {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0.03;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    /* ========================================
+       GLOWING TEXT
+       ======================================== */
+    .poa-glow {
+        text-shadow: 0 0 40px rgba(212, 175, 55, 0.4),
+                     0 0 80px rgba(212, 175, 55, 0.2);
+    }
+
+    /* ========================================
+       IMAGE MASK REVEAL
+       ======================================== */
+    .poa-image-reveal {
+        clip-path: inset(100% 0 0 0);
+        animation: imageReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* ========================================
+       KEYFRAME ANIMATIONS
+       ======================================== */
+    @keyframes slideUp {
+        to {
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0) rotate(0deg);
+        }
+        50% {
+            transform: translateY(-20px) rotate(2deg);
+        }
+    }
+
+    @keyframes particleFloat {
+        0%, 100% {
+            transform: translate(0, 0);
+            opacity: 0.6;
+        }
+        25% {
+            transform: translate(10px, -30px);
+            opacity: 0.8;
+        }
+        50% {
+            transform: translate(-5px, -50px);
+            opacity: 0.4;
+        }
+        75% {
+            transform: translate(15px, -20px);
+            opacity: 0.7;
+        }
+    }
+
+    @keyframes marquee {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+
+    @keyframes imageReveal {
+        to {
+            clip-path: inset(0 0 0 0);
+        }
+    }
+
+    @keyframes pulse-gold {
+        0%, 100% {
+            box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4);
+        }
+        50% {
+            box-shadow: 0 0 0 20px rgba(212, 175, 55, 0);
+        }
+    }
+
+    @keyframes spin-slow {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* Utility animations */
+    .animate-pulse-gold {
+        animation: pulse-gold 2s ease-in-out infinite;
+    }
+
+    .animate-spin-slow {
+        animation: spin-slow 20s linear infinite;
+    }
+
+    /* ========================================
+       MOBILE OPTIMIZATIONS
+       ======================================== */
+    @media (max-width: 640px) {
+        .poa-container,
+        .poa-container-wide {
+            padding-inline: 1rem;
+        }
+
+        .poa-hero-title {
+            font-size: clamp(2.5rem, 15vw, 4rem);
+            line-height: 0.85;
+        }
+
+        .poa-card {
+            border-radius: 1rem;
+            padding: 1rem;
+        }
+
+        /* Hide side decorative elements on mobile */
+        .poa-side-decor {
+            display: none;
+        }
+
+        /* Adjust marquee speed for mobile */
+        .poa-marquee-content {
+            animation-duration: 15s;
+        }
+
+        /* Stack hero images on small screens */
+        .hero-slide .grid {
+            gap: 0.5rem;
+        }
+
+        /* Mobile-friendly buttons */
+        .poa-magnetic {
+            padding: 0.75rem 1.5rem;
+        }
+
+        /* Reduce stat section spacing */
+        .poa-stat-number {
+            font-size: 2rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        /* Navigation adjustments */
+        .poa-nav-link {
+            font-size: 10px;
+            letter-spacing: 0.15em;
+        }
+
+        /* Hero content mobile spacing */
+        #hero .poa-container-wide {
+            padding-top: 5rem;
+            padding-bottom: 6rem;
+        }
+
+        /* Slide dots positioning */
+        .slide-dot {
+            width: 1.5rem;
+            height: 3px;
+        }
+    }
+
+    /* Touch-friendly hover states */
+    @media (hover: none) {
+        .poa-magnetic:hover {
+            transform: none;
+        }
+
+        .poa-tilt:hover {
+            transform: none;
+        }
+
+        .poa-hero-image:hover {
+            transform: none;
+        }
+    }
 }

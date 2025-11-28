@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f5e6b3"/>
+      <stop offset="50%" style="stop-color:#d4af37"/>
+      <stop offset="100%" style="stop-color:#c89d2a"/>
+    </linearGradient>
+  </defs>
+  <!-- Background circle -->
+  <circle cx="16" cy="16" r="15" fill="#000000" stroke="url(#gold)" stroke-width="1"/>
+  <!-- Inner decorative ring -->
+  <circle cx="16" cy="16" r="12" fill="none" stroke="url(#gold)" stroke-width="0.5" opacity="0.4"/>
+  <!-- Letter P -->
+  <text x="16" y="22" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="18" font-weight="600" fill="url(#gold)">P</text>
+</svg>
