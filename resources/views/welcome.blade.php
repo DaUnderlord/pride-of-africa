@@ -227,26 +227,22 @@
                     <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black pointer-events-none"></div>
 
                     <!-- Hero Content -->
-                    <div class="relative z-10 poa-container-wide text-center px-4 pt-0 md:pt-10 pb-24 md:pb-32">
+                    <div class="relative z-10 poa-container-wide text-center px-4 pt-0 md:pt-10 pb-24 md:pb-32" id="heroContent">
                         <!-- Top Label -->
-                        <div class="mb-5 md:mb-10">
-                            <span class="poa-id-font inline-block text-[8px] md:text-[10px] tracking-[0.4em] md:tracking-[0.5em] text-[rgba(245,230,179,0.75)] border border-[rgba(212,175,55,0.25)] px-4 md:px-5 py-2 md:py-2.5 rounded-full backdrop-blur-sm" data-scramble>
+                        <div class="mb-4 md:mb-10">
+                            <span class="poa-id-font inline-block text-[10px] md:text-[10px] tracking-[0.3em] md:tracking-[0.5em] text-[rgba(245,230,179,0.85)] border border-[rgba(212,175,55,0.3)] px-4 md:px-5 py-2 md:py-2.5 rounded-full backdrop-blur-sm" data-scramble>
                                 CURATED AFRICAN EXCELLENCE
                             </span>
                         </div>
 
-                        <!-- Main Headline -->
-                        <h1 class="poa-hero-title mb-6 md:mb-8" style="font-size: clamp(2.8rem, 12vw, 8rem); line-height: 0.9;">
-                            <span class="poa-hero-title-line block">
-                                <span class="poa-hero-title-word text-white">THE</span>
-                            </span>
-                            <span class="poa-hero-title-line block">
-                                <span class="poa-hero-title-word poa-glow text-[rgba(212,175,55,0.95)]">EDITORIAL</span>
-                            </span>
-                            <span class="poa-hero-title-line block">
-                                <span class="poa-hero-title-word text-white">STAGE</span>
-                            </span>
-                        </h1>
+                        <!-- Main Logo -->
+                        <div class="mb-6 md:mb-8 flex justify-center">
+                            <img 
+                                src="{{ asset('assets/images/logo.png') }}" 
+                                alt="Pillars & Pride of Afrika" 
+                                class="h-24 sm:h-32 md:h-40 lg:h-48 w-auto object-contain drop-shadow-[0_0_30px_rgba(212,175,55,0.3)]"
+                            />
+                        </div>
 
                         <!-- Decorative line -->
                         <div class="flex items-center justify-center gap-4 mb-6 md:mb-8">

@@ -535,14 +535,96 @@
         }
 
         /* Tighter vertical spacing on mobile hero */
-        #hero .poa-container-wide {
-            padding-top: 0;
-            margin-top: -2rem;
+        #heroContent {
+            padding-top: 0 !important;
+            margin-top: -3.5rem;
         }
 
         /* Reduce label margin on mobile */
-        #hero .poa-container-wide > div:first-child {
-            margin-bottom: 0.75rem;
+        #heroContent > div:first-child {
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    /* Mobile font size improvements */
+    @media (max-width: 768px) {
+        /* Base text sizes */
+        body {
+            font-size: 16px;
+        }
+
+        /* Paragraphs and general text */
+        p, .text-sm {
+            font-size: 15px !important;
+            line-height: 1.7;
+        }
+
+        .text-xs {
+            font-size: 13px !important;
+        }
+
+        .text-[11px] {
+            font-size: 12px !important;
+        }
+
+        .text-[10px] {
+            font-size: 11px !important;
+        }
+
+        .text-[12px] {
+            font-size: 13px !important;
+        }
+
+        .text-[13px] {
+            font-size: 14px !important;
+        }
+
+        /* Headings */
+        h1, .text-3xl, .text-4xl {
+            font-size: 1.75rem !important;
+        }
+
+        h2, .text-2xl {
+            font-size: 1.5rem !important;
+        }
+
+        h3, .text-xl {
+            font-size: 1.25rem !important;
+        }
+
+        h4, .text-lg {
+            font-size: 1.125rem !important;
+        }
+
+        /* Cards and content */
+        .poa-card {
+            padding: 1.25rem;
+        }
+
+        .poa-card p {
+            font-size: 15px;
+        }
+
+        /* Navigation and labels */
+        nav a, .poa-id-font {
+            font-size: 12px !important;
+        }
+
+        /* Buttons */
+        button, .poa-magnetic, a[class*="rounded-full"] {
+            font-size: 12px !important;
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+        }
+
+        /* Form inputs */
+        input, textarea, select {
+            font-size: 16px !important; /* Prevents iOS zoom */
+        }
+
+        /* Hero subheadline */
+        #heroContent .poa-hero-heading {
+            font-size: 16px !important;
         }
     }
 }
